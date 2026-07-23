@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="nojs">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.className="js";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Little Z's Lawn Care | Morrison, TN</title>
 <meta name="description" content="Mowing, weed eating, edging and clean-up in Morrison, TN and the surrounding area. Call or text Zach or John.">
@@ -330,11 +331,11 @@
   a:focus-visible,button:focus-visible{outline:3px solid var(--cut);outline-offset:3px;}
 
   /* each section gets mowed in as you scroll to it */
-  .mow-in{
+  .js .mow-in{
     clip-path:inset(0 100% 0 0);
     transition:clip-path .85s cubic-bezier(.22,.68,.32,1);
   }
-  .mow-in.cut{clip-path:inset(0 0 0 0);}
+  .js .mow-in.cut{clip-path:inset(0 0 0 0);}
   .mow-in.d1{transition-delay:.09s;}
   .mow-in.d2{transition-delay:.18s;}
   .mow-in.d3{transition-delay:.27s;}
@@ -349,7 +350,7 @@
   }
 
   @media (prefers-reduced-motion:reduce){
-    .mow-in{clip-path:none !important;transition:none !important;}
+    .js .mow-in{clip-path:none !important;transition:none !important;}
     *{transition:none !important;}
     html{scroll-behavior:auto;}
   }
@@ -516,8 +517,20 @@
       entries.forEach(function(en){
         if (en.isIntersecting) { en.target.classList.add('cut'); io.unobserve(en.target); }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
     rows.forEach(function(el){ io.observe(el); });
+
+    /* safety net: content must never stay hidden because an animation missed */
+    function sweep(){
+      rows.forEach(function(el){
+        if (el.classList.contains('cut')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('cut');
+      });
+    }
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('load', sweep);
+    setTimeout(function(){ rows.forEach(function(el){ el.classList.add('cut'); }); }, 6000);
   }
 
   /* ---------- add to home screen ---------- */
