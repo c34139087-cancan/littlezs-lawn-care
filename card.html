@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zachery McCormick | Little Z's Lawn Care</title>
+<meta name="description" content="Digital business card for Little Z's Lawn Care, Morrison TN.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#12140E;
+    --asphalt-2:#1B1E15;
+    --red:#C4271D;
+    --red-dark:#96190F;
+    --cut:#5C8A2E;
+    --shade:#2A4116;
+    --bone:#F1EFE4;
+    --dust:#9E9C8B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:#0A0B07;
+    font-family:'Barlow',system-ui,sans-serif;
+    color:var(--bone);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+  }
+
+  .card{
+    width:100%;
+    max-width:400px;
+    background:var(--asphalt);
+    overflow:hidden;
+    box-shadow:0 22px 60px rgba(0,0,0,.6);
+  }
+
+  /* head */
+  .head{
+    position:relative;
+    background:var(--asphalt-2);
+    padding:34px 24px 26px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .head::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(101deg,var(--shade) 0 26px,#34521C 26px 52px);
+    opacity:.5;
+  }
+  .head > *{position:relative;z-index:2;}
+
+  .biz{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    line-height:.94;
+    font-size:2.1rem;
+    letter-spacing:.01em;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+  }
+  .biz .z{color:#FF6A5E;}
+  .person{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:.84rem;
+    color:#E6E3D5;
+    margin-top:12px;
+  }
+
+  .rule{height:6px;background:var(--red);}
+
+  /* rows */
+  .rows{padding:20px 20px 6px;}
+  .row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--bone);
+    background:var(--asphalt-2);
+    border:1.5px solid #2C3126;
+    padding:13px 15px;
+    margin-bottom:10px;
+    transition:border-color .16s ease,transform .16s ease;
+  }
+  .row:hover,.row:focus-visible{border-color:var(--red);transform:translateY(-2px);}
+  .ic{
+    flex:0 0 38px;
+    height:38px;
+    background:var(--red);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;
+  }
+  .ic.green{background:var(--cut);}
+  .lbl{
+    font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.17em;
+    font-size:.68rem;
+    color:var(--dust);
+    display:block;
+  }
+  .val{font-size:1.03rem;font-weight:500;line-height:1.3;}
+
+  /* qr */
+  .qr-zone{
+    text-align:center;
+    padding:8px 20px 26px;
+  }
+  .qr-title{
+    font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:.75rem;
+    color:var(--dust);
+    margin-bottom:14px;
+  }
+  .qr-box{
+    display:inline-block;
+    background:var(--bone);
+    padding:12px;
+  }
+  .qr-box img{display:block;width:172px;height:172px;image-rendering:pixelated;}
+  .qr-help{
+    color:var(--dust);
+    font-size:.84rem;
+    margin-top:12px;
+    line-height:1.45;
+  }
+
+  .save{
+    display:block;
+    text-align:center;
+    background:var(--red);
+    color:var(--bone);
+    text-decoration:none;
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:1.02rem;
+    padding:15px;
+    transition:background .16s ease;
+  }
+  .save:hover,.save:focus-visible{background:var(--red-dark);}
+
+  .foot{
+    text-align:center;
+    padding:16px;
+    font-size:.8rem;
+    color:var(--dust);
+    background:var(--asphalt-2);
+  }
+
+  a:focus-visible{outline:3px solid var(--cut);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="head">
+    <div class="biz">Little <span class="z">Z's</span><br>Lawn Care</div>
+    <div class="person">Zachery McCormick &middot; Morrison, TN</div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="rows">
+    <a class="row" href="tel:+19317431160">
+      <span class="ic" aria-hidden="true">&#9742;</span>
+      <span><span class="lbl">Call or text Zach</span><span class="val">931-743-1160</span></span>
+    </a>
+    <a class="row" href="tel:+19317436726">
+      <span class="ic" aria-hidden="true">&#9742;</span>
+      <span><span class="lbl">Call or text John</span><span class="val">931-743-6726</span></span>
+    </a>
+    <a class="row" href="mailto:Bank2010@icloud.com">
+      <span class="ic green" aria-hidden="true">&#9993;</span>
+      <span><span class="lbl">Email</span><span class="val">Bank2010@icloud.com</span></span>
+    </a>
+  </div>
+
+  <div class="qr-zone">
+    <div class="qr-title">Scan to save contact</div>
+    <div class="qr-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsYAAALGCAIAAADJCsDiAAAXqklEQVR4nO3cMXIj23JFUVHBiXzjO5r/WOTIkEOfwRnIpaG4eNF5sjNvYS23g0ChqoDeUcb5+Pn++g8AgJr/nD4AAOAJJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAI+z//8r3//1985jr/mf//nv//4b89no/LKlfc96zuqs75j7rsnp85VRd89WXnlG69+ReWYd97tU1dw56/o2Y13bMX583pKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAR8/Hx/Hf55aumsYuc6285VuBvXFSuedxXOblzue96+7c7re+Nq585dzrOdR3VWOWZPKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAz76Xntpfq6ishu1cdtu5Ylmx8+qfTW3k9S1R7jT1efu+ZX2/OTeu7lY8b8Wyou/zekoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABDSuZ/LbznW2vhW8ylZd3+rf2dRyX5++Rde+T9S3crjzKpxNbXru3POdWrC9cXlziqcUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQID1zJh3W1ibWlfsU7mCU8ubfVfhxq3J5+m7vjtfuW8f891+n6d4SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAENK5nvtse2Y3bbTduXE553prkzsXP573v2c7vfuWodv7WVUwd843nylMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIKC0nml78bfKZtzOvbm+Y/a3f+dvK7xv6n13Xt8K34XU+z7v/1BPKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAF+uZO7fbplSWzvo24/re9+x5m5436lvf23l9+/62ou/7W7FzD7Tixn3M5/3mnHlKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAS8WM+c2nzscz7mqXW2s6nz3HfMFX07dztXDs8q98bOb2ifG1dod/5uVH5F/V5t0Pd5PaUAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAj5+vr/++I+ndgx3LiTuPKqKGz9R3yrclBu/ZX3v+7yz8W6e9wvsfX/zlAIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIGFvPfN5e5NnUSlqfnZ/oxjW6s51rklN2LgY+733Ppn6Rdm7y9l3fG6+gpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwOf5n/u2+frsPKqz522oVexco9t5VH2mFgPPpq5C3y/hjffG1G5y352zcx9z6t6oHJWnFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAEDAx8/31x//cd+i3POWzvrcuK05dSZ3btVV7PwuVF65T9/Vf96dU/G883zjyvDUMXtKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAASU1jPPdm57TS3Z3bhyWLHz8+5cwTvbuSd4tvPb/bw7Z+eG6c4Vy+ctMu/8RJ5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGfU2/ct1W3c+lsys5VuOfpO5N999XUfuLUPVn523fbML3xV3Tq93nq6u/838pTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDg4+f764//+MY1yYp3W5Sb2jF83n218/pWPO99d951O1c7p5ZGn7dSerbzbJzf11MKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODFeubUXuTOVz7bud228zz3ebclu7Mbvyk7dyrPHPMG77YW2qdyVJ5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGl9cypBb2dO4Y79xPPdp7nGzfjpr4pZzd+Q8927pBOed55Prvxl6Hvfc+mzpWnFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAEDAi/XMPjfuvt24kja1+3Z24zLjjfuJZzd+y6a+KX2v/G7f35123s9T/+NU3tdTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDgxXrmjdt8z9tP7Ft2O9u5Flrxbkt2O+1cKpx65Z3v2+fGzdazvnXUiqnfOk8pAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgIDPqTeeWrLbuYBZOaqps3Hjkl3fMd94ns927gnuXJO88Y49e97vZOV9p175xu+gpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAQGk9c2rz8cZ9vYqdm3FTG4jnv506Vzv3TyvXd2rHcOf3d+rqn+1cZux737Odu8l9/9Pt5CkFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEFBaz+zb9ppadrtR32Zc34Zpxc5dzuftGPbt+j1vs3XqO7jT1Lm68fpW9N1XlVf2lAIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIeLGeuXNTbOeW2dnUqmPFjat/fe+7cyFx54Je5X2n9K2jTu1FVuy8N/quUZ+pX6SzvivoKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8PHz/XX4577lr507aDuXN3fuNp71rYVO/W3F1Hk+61vfe7fP2/e+fZ73W7fzrpsydTY8pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACGtczn7djOHVUU2dy57bmjW7cA/Xd/63vjn3eIuTO342d53nnd6Hyvp5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAEv1jPPLFGmTO1F3viJpnYMK3ZuIL7b5uPOPdAbNx8rdt51O/8/6mM9EwBYTVIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACCgtJ551rfPdePe3M5Nz52rnTs3Ad9tBa/yvmdTV7/ixnXFnWuhFVP7mDvvySnnM+kpBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDwOX0A/7/KWtnObc2KvmPeuWG682933jk7742znVf/rO9MTl3B8yvv3MfcuSX6PJVz5SkFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEPBiPXNqu62ib33vbOc2X2Ujr/K+O//2bOe+Xt/K4dR+4o1Lo7ZT/7mps7Hzjp1aKJ7iKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8GI986xvvWvndtvOxc/KK58970z2/e3Zzl3Oinfbi7xxG3dqt/F5u8k7lzf7XrnyeT2lAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAJK65lnlbWyGxfHpj5v34LelMq5mjqTU1eh732nNhArpvYid66jTm1rnk19u3d+f6f0fV5PKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAj5/vr8M/Ty3K7bRz527n7tvOq/+8K7jzPPeZuoJnU0uUFTt/GXZe3xtNXV9PKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAz+kD+BNTC2t9+3rPW3Xcuc3X97dT+5g7l1WnlijPdu4n3riseuMr9y2cPu/Xu8JTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACCgcT1z57JbZTVs5/5a5TxPbfNNncm+q9C32ul79M/deCbPpo75bOcVnHrlqfed+kRnnlIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAS/WM6f2E6eWGXfauVNZUdl9u3H/9MZtzZ17gjdup04tYO48k1PfhSlTRzV1rjylAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAI+fr6//viP+3bfdpra16u4cT9xys6du7OpZcaKnSuHZzfuY55N3XU3rrLutHM511MKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIKC0nnnWt2U2tWK5cwWvYuc1OnMF/453W1fs826/dc/7Dj7vmPvuSU8pAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgIAX65lTq2HPWyubcuN53nlUfXbuJ+7Ut+pYed++LcKd98bOZdWdR9Vn6rtw5ikFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEFBaz9y5GrZzUe7dzlXFzo28ip3rilNLhRU77w0Lp7/d+A09m7rrKqZ+zTylAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAJK65lTblyxPNu5cXnjZtzZjXuRU248G1NbhBZ799t5rnau31bOhqcUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMCL9cw+U1tmU6t/U/t6FX3n6sZjPptaON3pxs3HnUd1duM27rt9Q29cVq38racUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDn+Z9vXO/auXS282/7NgGnFvTscv429T26cQ/Ur9kGN35/b1zO7duK9ZQCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACHixnnm2cy9yasus8r5Tm3E7Vw6n9iIr+u6cvmt04zFXTN0bN75y5X13roX67qfe9/y3nlIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAR8/319//MeWCv+Oqa26qR3Sip3naueeYMXO69tn6rfubOcv8NTZOHu338mpq+ApBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABBQWs8827lWVjG1Y/i8s9Fnah31xsXAs6lNwJ3vu3On8mznquOUnd/QPlO/dZ5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAFj65lntiZ/27knOOXGT9R3T+7cqO07qoq+s3Hj5624cUv0rO8aPe8qnHlKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAASU1jP7tszOdu6R3bhjOGVqq+7G9b0+7qu/87d9dq5Y7vytu/GoKq/c53zMnlIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAaX1zLPnbSCe7dxf27mwtvMKVuxck6zYeSbf7ahu/KbceMx9bjwblbvdUwoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAg4PP8z5UVrZ37iTeuHE5txlXO5NR26s610Iq+M7nTjTuzz7tGO3/5p87zuy1gVnhKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAS8WM+smFpJ61sNm9rm61s6qxxz399W7Nwi7DN1P0/ZeU/u3ALeeQXPpo75xvtq56+opxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwIv1zKkts773nVqx7NvWnFpY61sMvFHfVbhx7/V5nreQ2Hd9n3fn7PxEU1fwfE96SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAEvFjPrLhx961vBa/vfSumVuH6ztXOVz7rO+ade687Vzt3bhFOnY2pO+fGz3vjMffxlAIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIeLGeObUI+bxtvrPKvt6UnVuTO++6vr/deT+f3XjM7/arsvO7MPXdv/FXpfKJKu/rKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8PHz/XX45779tRvX6M6mPtHO96248Vzt3CI8e94W4dTO7NTvZJ+dm48VN36PKu9bYT0TABgmKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEDC2ntnnxpW0nTtoFTs/0c578sZtzYqpNcmpX7Odd+zOJdmd/6ecuXN+85QCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACPg8/3PfNt/UwtrOZbe+lbS+LcKKqfc9m1p17FM55nf7RDv3Iisqrzy127hzO7Xyymc3roWeeUoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABHz8fH/98R8/b2vyxg21nWejYuqodp6Ns53fwalvd8XU6m6fnb8bO4+q75Wf9z/dmacUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMCL9cyplbTK4tjZjcdc8bw90J3bmmfPW7G8cRNw58blTjfuRZ7t/G1/3rKqpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwGffS1cWuHYu2e1cDKz87dQ12rlD2neu+pb7po55ivXbZ5v6vbrxt72i73vkKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ0Lieeda3Vta3R7Zz5fCs75X7lgpvXKPbudu4cxHyrHImn/c9mvqd3LlTWTG1YNtn53n2lAIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAI+Pj5/po+hkV2rjpOLfed7TwbN64NVriv/rkb742pjdqd39DK+57deMfuPM+eUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABn+d/7lvgmnJe/upbo6u88o3LbhU7Vyx3rg32HVXfeZ76vFPfwYqd90afnffzzu/Rzv8XPKUAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAj5+vr8O/zy1VFixc31vahFyauNyJxuI//yVK553P099op3fsp3Lm2fP+x5NOX9eTykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgM++l37ebuPObc2znet7Z1N7gn1Xoe9vK8e8c5uvou9s7PzNqZhaCz278bu/c5O3ovKJPKUAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAj5+vr8O/zy1+Xi2c6fy7MaturPKUd24B/pu1+hs5zauHcPfdn5Tpkz9At/4/1GFpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwOf0Adxkaulsp+ft+k0d1ZSps7HzlXeuo1Z+c/pe+fy3OxchK+/b91s3tdrZx1MKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIKBxPfPGLcK+pbOpLbOpdbYbN+NuvL4VU59oaouwz877ufK+U9/fPjvvnBv3Mc88pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACSuuZO9e7Kvq2F6fcuII3tRh4ft+pczW1YrlzbXDqmKe2Ynde/b5jvnFN8nlroZVP5CkFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEPDx8/01fQwAwPU8pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAAC/g+ti50hKYGL+QAAAABJRU5ErkJggg==" alt="QR code that saves Little Z's Lawn Care to your phone contacts"></div>
+    <p class="qr-help">Point your camera at the code and it drops us straight into your contacts.</p>
+  </div>
+
+  <a class="save" href="LittleZs.vcf" download>Save to contacts</a>
+  <div class="foot">Mowing &middot; Weed eating &middot; Morrison, TN</div>
+</div>
+
+</body>
+</html>

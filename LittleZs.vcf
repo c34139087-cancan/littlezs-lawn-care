@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:McCormick;Zachery;;;
+FN:Zachery McCormick
+ORG:Little Z's Lawn Care
+TEL;TYPE=CELL,VOICE:+19317431160
+TEL;TYPE=WORK,VOICE:+19317436726
+EMAIL;TYPE=INTERNET:Bank2010@icloud.com
+ADR;TYPE=WORK:;;;Morrison;TN;;USA
+NOTE:Zach McCormick 931-743-1160 / John McCormick 931-743-6726. Mowing and weed eating.
+END:VCARD

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Z's Lawn Care | Morrison, TN</title>
+<meta name="description" content="Mowing, weed eating, edging and clean-up in Morrison, TN and the surrounding area. Call or text Zach or John.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12140E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Little Z's">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#12140E;
+    --asphalt-2:#1B1E15;
+    --red:#C4271D;
+    --red-dark:#96190F;
+    --cut:#5C8A2E;
+    --shade:#2A4116;
+    --bone:#F1EFE4;
+    --dust:#9E9C8B;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--asphalt);
+    color:var(--bone);
+    font-family:'Barlow',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.82rem;
+    color:var(--dust);
+  }
+  h2{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:1;
+    font-size:clamp(2rem,7vw,2.9rem);
+    margin:.35rem 0 1.1rem;
+  }
+
+  /* ---------- mow stripes (the signature) ---------- */
+  .stripes{
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      101deg,
+      var(--shade) 0 34px,
+      #34521C 34px 68px
+    );
+  }
+
+  .stripe-rule{
+    height:30px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg,#33511C 0%,#1D3210 100%);
+  }
+  .turf{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    position:relative;
+    overflow:hidden;
+    padding:74px 0 0;
+    background:var(--asphalt);
+  }
+
+  .hero-inner{position:relative;z-index:2;}
+
+  .badge{
+    display:inline-block;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:.78rem;
+    color:var(--bone);
+    background:var(--red);
+    padding:6px 13px 5px;
+    margin-bottom:20px;
+  }
+
+  h1{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    line-height:.92;
+    letter-spacing:.005em;
+    font-size:clamp(3rem,15vw,6.2rem);
+    margin-bottom:18px;
+  }
+  h1 .z{color:var(--red);}
+
+  .lede{
+    font-size:1.12rem;
+    color:#D9D6C8;
+    max-width:34ch;
+    margin-bottom:30px;
+  }
+
+  /* call buttons */
+  .calls{display:flex;flex-direction:column;gap:11px;padding-bottom:52px;}
+
+  .call{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    text-decoration:none;
+    background:var(--red);
+    color:var(--bone);
+    padding:15px 20px;
+    border:0;
+    transition:background .16s ease,transform .16s ease;
+  }
+  .call.alt{background:var(--asphalt-2);border:1.5px solid #3A3E30;}
+  .call:hover,.call:focus-visible{background:var(--red-dark);transform:translateY(-2px);}
+  .call.alt:hover,.call.alt:focus-visible{background:#242820;}
+  .call .who{
+    font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:.78rem;
+    color:#F1EFE4;
+    opacity:.8;
+    display:block;
+  }
+  .call .num{
+    font-family:'Anton',sans-serif;
+    font-size:1.42rem;
+    letter-spacing:.02em;
+    line-height:1.15;
+  }
+  .call .arrow{font-size:1.3rem;opacity:.85;}
+
+  /* the grass band under the hero */
+  .lawn{
+    position:relative;
+    height:96px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#33511C 0%,#1D3210 100%);
+  }
+  .lawn::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:5px;
+    background:var(--red);
+    z-index:3;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:54px 0;}
+  .sec-alt{background:var(--asphalt-2);}
+
+  /* services */
+  .services{display:grid;gap:2px;background:#2C3126;border:2px solid #2C3126;}
+  .svc{background:var(--asphalt);padding:22px 20px;}
+  .sec-alt .svc{background:var(--asphalt-2);}
+  .svc h3{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:1.12rem;
+    letter-spacing:.02em;
+    margin-bottom:6px;
+  }
+  .svc h3::before{
+    content:"";
+    display:inline-block;
+    width:14px;height:5px;
+    background:var(--cut);
+    margin-right:10px;
+    vertical-align:middle;
+  }
+  .svc p{color:var(--dust);font-size:.97rem;line-height:1.5;}
+
+  /* how it works */
+  .steps{display:grid;gap:24px;}
+  .step{display:flex;gap:16px;align-items:flex-start;}
+  .step .n{
+    font-family:'Anton',sans-serif;
+    font-size:2.1rem;
+    line-height:.9;
+    color:var(--red);
+    min-width:42px;
+  }
+  .step h3{font-family:'Barlow',sans-serif;font-weight:600;font-size:1.05rem;margin-bottom:2px;}
+  .step p{color:var(--dust);font-size:.97rem;}
+
+  .note{
+    margin-top:28px;
+    border-left:4px solid var(--cut);
+    padding:12px 0 12px 16px;
+    color:#D9D6C8;
+    font-size:1rem;
+  }
+
+  /* contact */
+  .contact-grid{display:grid;gap:2px;background:#2C3126;border:2px solid #2C3126;margin-top:6px;}
+  .card{background:var(--asphalt);padding:22px 20px;}
+  .card .name{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:1.3rem;
+    margin-bottom:12px;
+  }
+  .card a{
+    display:block;
+    color:var(--bone);
+    text-decoration:none;
+    font-size:1.04rem;
+    padding:5px 0;
+    border-bottom:1px solid transparent;
+  }
+  .card a:hover,.card a:focus-visible{color:#fff;border-bottom-color:var(--red);}
+  .card .lbl{
+    font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:.72rem;
+    color:var(--dust);
+    display:block;
+    margin-top:9px;
+  }
+
+  /* save contact */
+  .save-block{
+    margin-top:34px;
+    text-align:center;
+    border:2px solid #2C3126;
+    padding:30px 20px 26px;
+  }
+  .save-block .eyebrow{color:var(--cut);}
+  .save-block .sub{
+    color:var(--dust);
+    font-size:.97rem;
+    margin:6px 0 20px;
+  }
+  .qr-box{
+    display:inline-block;
+    background:var(--bone);
+    padding:12px;
+  }
+  .qr-box img{display:block;width:170px;height:170px;image-rendering:pixelated;}
+  .save-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:var(--red);
+    color:var(--bone);
+    text-decoration:none;
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:.98rem;
+    padding:14px 26px;
+    transition:background .16s ease;
+  }
+  .save-btn:hover,.save-btn:focus-visible{background:var(--red-dark);}
+
+  .area{
+    margin-top:30px;
+    font-size:1rem;
+    color:var(--dust);
+  }
+  .area strong{color:var(--bone);font-weight:600;}
+
+  footer{
+    background:var(--asphalt);
+    padding:30px 0 40px;
+    text-align:center;
+  }
+  footer .fname{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:1.1rem;
+    letter-spacing:.04em;
+  }
+  .install{
+    display:none;
+    margin:16px auto 0;
+    background:transparent;
+    color:var(--bone);
+    border:1.5px solid #3A3E30;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:.78rem;
+    padding:11px 20px;
+    cursor:pointer;
+    transition:border-color .16s ease;
+  }
+  .install:hover{border-color:var(--red);}
+  .install.show{display:block;}
+  .ios-tip{display:none;margin-top:14px;font-size:.82rem;color:var(--dust);}
+  .ios-tip.show{display:block;}
+
+  footer .fsub{color:var(--dust);font-size:.86rem;margin-top:5px;}
+
+  a:focus-visible,button:focus-visible{outline:3px solid var(--cut);outline-offset:3px;}
+
+  /* each section gets mowed in as you scroll to it */
+  .mow-in{
+    clip-path:inset(0 100% 0 0);
+    transition:clip-path .85s cubic-bezier(.22,.68,.32,1);
+  }
+  .mow-in.cut{clip-path:inset(0 0 0 0);}
+  .mow-in.d1{transition-delay:.09s;}
+  .mow-in.d2{transition-delay:.18s;}
+  .mow-in.d3{transition-delay:.27s;}
+
+  @media (min-width:620px){
+    .calls{flex-direction:row;}
+    .call{flex:1;}
+    .services{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr 1fr;}
+    header.hero{padding-top:92px;}
+    section{padding:70px 0;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .mow-in{clip-path:none !important;transition:none !important;}
+    *{transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="badge">Morrison, TN &amp; around</span>
+    <h1>Little <span class="z">Z's</span><br>Lawn Care</h1>
+    <p class="lede">Mowing and weed eating, done by Zach and John. Call or text and we'll come take a look at your yard.</p>
+    <div class="calls">
+      <a class="call" href="tel:+19317431160">
+        <span><span class="who">Call or text Zach</span><span class="num">931-743-1160</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a class="call alt" href="tel:+19317436726">
+        <span><span class="who">Call or text John</span><span class="num">931-743-6726</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+  <div class="lawn" aria-hidden="true"><canvas class="turf"></canvas></div>
+</header>
+
+<section class="sec-alt">
+  <div class="wrap">
+    <span class="eyebrow mow-in">What we do</span>
+    <h2 class="mow-in d1">Yard work, handled</h2>
+    <div class="services mow-in d2">
+      <div class="svc">
+        <h3>Mowing</h3>
+        <p>Weekly, every other week, or a one-time cut when it's gotten away from you.</p>
+      </div>
+      <div class="svc">
+        <h3>Weed eating</h3>
+        <p>Around trees, fence lines, mailboxes and everywhere the mower can't reach.</p>
+      </div>
+    </div>
+    <p class="note mow-in d3">Need something else done around the yard? Just ask when you call.</p>
+  </div>
+</section>
+
+<div class="stripe-rule" aria-hidden="true"><canvas class="turf"></canvas></div>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow mow-in">How it works</span>
+    <h2 class="mow-in d1">Three steps</h2>
+    <div class="steps mow-in d2">
+      <div class="step">
+        <span class="n">1</span>
+        <div>
+          <h3>Call or text us</h3>
+          <p>Tell us your address and what the yard needs.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <div>
+          <h3>We work out a price</h3>
+          <p>Every yard is different, so we'll settle on a price with you before anything gets started.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <div>
+          <h3>We get it cut</h3>
+          <p>Set up a regular day or just call us when you need us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-alt" id="contact">
+  <div class="wrap">
+    <span class="eyebrow mow-in">Get in touch</span>
+    <h2 class="mow-in d1">Give us a holler</h2>
+    <div class="contact-grid mow-in d2">
+      <div class="card">
+        <div class="name">Zach McCormick</div>
+        <span class="lbl">Call or text</span>
+        <a href="tel:+19317431160">931-743-1160</a>
+        <span class="lbl">Email</span>
+        <a href="mailto:Bank2010@icloud.com">Bank2010@icloud.com</a>
+      </div>
+      <div class="card">
+        <div class="name">John McCormick</div>
+        <span class="lbl">Call or text</span>
+        <a href="tel:+19317436726">931-743-6726</a>
+        <span class="lbl">Email</span>
+        <a href="mailto:Cornbread278@gmail.com">Cornbread278@gmail.com</a>
+      </div>
+    </div>
+    <div class="save-block mow-in d3">
+      <span class="eyebrow">Save our number</span>
+      <p class="sub">Scan the code and we'll drop straight into your contacts.</p>
+      <div class="qr-box"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsYAAALGCAIAAADJCsDiAAAXtElEQVR4nO3cO3Ls2nJFUVHBjjzjOep/W+TIkEOfwR7IvVYWdfbKk7lRY7iM+gGo4gwY6+Pn++s/AADO/Of0GwAAnkBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAg4LP+87/+/V9/5338Nf/7P//9x4+tj0bfM0+Z+kT16+48VrWTI1mbuiannnnqurrxSNaed5xrfb8bz/u9qtWf110KACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODFematb+nsxM61shu3+fpet37szp27nedo53LfzjN48sy1k9fd+Xt1ou+XYecu54md7+rkmnSXAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAg4Ws+sTS3onbhxf632vG2+vrNw4zNPve7O62rnMmPfpufUaufOJdmdr3vixv+h7lIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAY3rmfze1LJb3wpe39rgzkW5qTXJqR3DqVXHG/dAp66rvj3QE1Pv6sbFzxu5SwEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAEWM/8S3YurO3cT3yeqZXSEzfugb6bvjXJG1c7d66Fvht3KQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAxvVMe2S/t3PZ7cb9xJP33LcYePK6O5/Z6/7+dWt9G7VTa5I7f81OTL3nG4+VuxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwNF65tS64k47N+N2ru8977G1nSuHNa+bet2d5/fEzu/gjdfG8/6HuksBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABHz8fH9Nv4dFTrbM+rYX+0xt802t0U3t3E19ouetDZ7YeQan7PxEO6+NnRumO7lLAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAS8WM/sW+6b8rx1tuedoxM79zGfd5ynTC1+1vo2THe+qxPP27et7fzu931edykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgBfrmbV321973sLa87ZEn8d+4t95bO3drsmdG5cndl4bz3tddykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgBfrmVPLfX127kXWdi737Vx1nLqu+kyt/vUdyZ2bnn1uXEis7fwVvfGbsvM7eMJdCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDgs/7zjVt1N27z7VyE3Hk0Th7bd/Z37vqd2Lnrt3OpcOqKnbLzat/5zLWdS8En78pdCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDg4+f7648ffOMW4c4FvRNTO4a1nYufN+7r1W78lk258VelT985uvG6erf33MddCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDgaD2ztnPbqza1RDm12rlzefPEjSt4tRsXP3ceqxvPfm3q2nBd/dPOBds+9btylwIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAI+Dx58Ml619QeWe15+3onTo7Gu20+9n3eqW2+Ezt3/U4e+7yVwxM7V0qft0F8Yur/kbsUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDHz/dX8ed324ucWmbceZx3buTd6HlHY+ea5I1LozXH+fePvdGNm63167pLAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAASMrWeebHv1rYZNfaITO/fmprY1p66rnWehT9+a5NSK5dTvxgnvOfXMfa+787G1k2d2lwIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIeLGe2Wfn4tiJG/cTdx7nnbt+Ny7Z3fjY2s412CmO89/xvEXmvuPsLgUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8Fn/uW+d7cTOfcyTx/atsz1vtXPqmU9et++ZrcH+3sknet4OaW3nrm6fnb85fee377pylwIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAI+Pj5/ir+PLX8tfN1p9ZCp/bmdp7BG49GbedV12fnfmLNhunv3bi8OfVfY+fvpPVMAGCYpAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDn1AvvXA3r07eQ2LdVV+s7zjv39Wo3HueaPcHU69bqd/W8s39iasF26pn7/i/UTr6/7lIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAR8/31/Fn/s2AWtTC3pTn+jGI7nzdWt9q443vucTNx6rPn2fqHbjt3vKjd+Uk2c+YT0TABgmKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEPDZ99Q7l912rv7VTt7VzoW1+rFTS3Ynj915tZ+8bt856nvPz/vdeN5OZW3nbvLO/wsn+j6RuxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwMfP91fx56lNwNq7bZnVdh7n563+TV11U8uMU5+oz84Vy6nNxxM37mP2PfONv4R93253KQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAF+uZJ25cHHve8ubOfb2+97zzDO78vDt3DE9MrSvWbjwaU9+jG3/Ndpo6Gu5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAEv1jOn9vX61sqmFvRqO5fsTty4grfzdd9tW3PnTuXULufO36vazrPwvO/+ib7XdZcCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACPis/3yy/HXjLljfhtqJ560rTq0NPu+avHEfs7bzO3hi5+Zj33W18zf2xu/+jdylAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAI+fr6/mp56avVvartt50bezmfeeY5qN17PU5uAtZ3X5E7Pu2JP9F0bfa/7PPWRdJcCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACFi6nrlz4/LkmadM7dzVpvYip/YEazt3SHd+Q0/c+Kuy09Q52vkNfZ6Ts+AuBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDwYj1zanFs5xZh7calwtrUkexz4+Zjbee2Zm3qO7jzaNR2bsXWdq6U7vxtP3ndnb+x7lIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZ8nD+7bMptaOjt55qkFzJ3LfSfPfKLvujpx4wZibWrR9cYjuXMLuO9d7fwlvPH/0c4jWXOXAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAg4Ws+s7Vx1nFr9q528q53riif6zuCNO4ZTi5A7v0dTn2hqifJE3yea+h7t/P7yT+5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAEfP99fxZ+ft1N5YmpD7cZlt51n/8alQv5p6gzWTt7VjTukJ6Z+zd7tGzp1ft2lAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIa1zNPeN2/42Qz7sbVzr6NvJ3X5I3X843vqu847zz7z1uTvPGKnVr8rF/XXQoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAg4HPqhfu2vZ63GNi3oXbj1uTO9zy1VXfj9+h5a4M3PvOJnWfw5Jn77FxW7eMuBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDw8fP99ccP3rlVd+LGRcg+z9vmq924gNm3u3rixk/0vF+zWt/nvXFn9nnfo1rf53WXAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAj4nH4Df2LnquONC5j1u5pahZs6v7W+ZcYpO79HfY89MbUXeeOe786tyZ3n6MTORVd3KQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAj5/vr6anft6a5M5PVOvbUHveRt7U2uBO73bl9Nm5uzq1vTj1iWpTy5s3Xu31e3aXAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAh4sZ5549LZztd9NzuP8/O26mo739WJGzc9d6527tyL3Pmudtr5ed2lAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAKO1jOn1uj6TK0NTi337dwE3Lncd/LMtRu/Zc9bhKzd+MxTdn5Dd9r5DT15V+5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAFH65m1nTtoU3uRO1f/aju3Jk/s3Mec8m6faGrvtbbzXT3PzpXSqeXcvl9CdykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgBfrmX2mtsyet/q3c6W0duP5fbdzdGJqK7b2bnuvtal1RbvJf8fULqe7FABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAEDAZ/3nvp27nVuEU8t9J++57xxNLej1XVd9dl6TUwt6O/dAbzyStamrvc/UL/DUWdi5JHvyuu5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAEv1jNr77aRd2Lnzt3OM3hi5+bjzmuyNnWspvYE+9z4nk887zt441ZsrW/v1V0KACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODFembfxlbtZI+s712dHI2TT9S33bZz1+/kDO7c5tu5CLnzXfWxcpiy85lvXHSd+q/R91h3KQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAF+uZtb5lt6nlr51bdTtXDt9tiXLnNVk7OVZTW5M79xOn3PiJbnzPtanf2J3fhfpduUsBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABHz8fH8Vf55a35t65j4733PfEuWNS6NTV+zUNXni3XY5azuPxo3XVW3nYu/JM9d2/teouUsBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABLxYz6zt3DKb2nycemyfned36pl3vm7ted+jmm/oP+3cbdy5q1u78Uj2qd+VuxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwNL1zJ1u3CI8eeYTUwuJfVzt//S8JcrajZuPtee9552/Ks87g9YzAYB2kgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGf9Z+ft9tY27mQOLUneLJVN3Ukpxb0dq7vTW227tya7Nte3Lnb2Gfncd75HaxN/bfqO1buUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABL9Yz+3bQ+vRtik1txt24B/q8VbidK4c7r7qp342pTc/nfaIpzkLqmae+++5SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAEv1jN36luF69tB61s6u3Fhbefu6okbr5wbNy6n7FxIPLFzWbU2dRZ2XpN9To6zuxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwIv1zKmFtZp3td/UpueNa5I7r5znXZO1qfO7c0t059nfuQU8ZWp3teYuBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDwYj1zytQG4tTi2PPeVd9Z6Hvs1PreyWN3riveuGFa2/muajeudp7o+x7d+Gt24uRIuksBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABBytZ+7cqTzZFNu5+rdzYa22cw90St91NbVieWLq7O983ed9U25csZxav925ums9EwAYJikAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDw8fP99ccPnlpmrPUtrPUtjvUdyamV0p2vO3XFTr2rG6/J550jZ+H3r1vb+R+nz85jVb8rdykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgBfrmVNbk1MLiVNrZTtfd+c+5om+4+wMptx41T3v1+x5fH9//8w165kAQDtJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgM/6zyf7XH2rcCevW9u5Nji1obbzmftMveep4zy1+rfzmU8e23fl7PwOvtuvd9/nfd4vsLsUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDHz/dX8ee+bb6pbc3azoW1Ezd+oqmlwtrUbuOJ561Y1na+qxvduH5b27kzO6Xv/LpLAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAR89j31yQLXjWuDtakVy6kVvJ2f98TzdkhrO9dgd+6B9tm5vVjb+R2cOvs3Xlcn/zXcpQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACGtcza1MrePVj+9YG+95V3z5m395c33s+eeYbP1HfY6dM7b3W+l735HejNrVfvHOldOqXoc/O9+wuBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDw8fP9Nf0eFtm5gTi13Fd73tGoPW/x03X1e1MLtn3XxtR1NXWOajd+j3YeZ3cpAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgIDP+s99C1xT6uWvvjW6vqWzvuW+netsU3uCU0ej5rr6/TPX6te98fxO7cye2Hk97/we7Vz8dJcCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACPj4+f4q/nzjOtvUuuLOx/Z5t7N/4t3O4M7FwNrzdgxvPAt9dm621nYe5/rzuksBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABHz2PfXOnbsTfWt0fZ9o58ZlbWqztW9fb+ey6s5tvlrf5qP9xN+/7o2Ln7Ubv0c7rzp3KQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAxvXMd7Nzfa+2c9Wxz87906mzcGJqS5S/o+96PtH3G9t3Te5cv61f9+TzuksBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABFjP/H/YuWPY58aFxBuP89TS6PPO0c5F152bj1Pbi33Hue91d57B2tRCsbsUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQEDjeua77RhOfd6d62zv9q6mtupOPG9Nsu91T5755DhPbU3Wdv4S1nZ+f3dezyfcpQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACjtYzd653nTj5RFM7dztXLE9MrSvWphY/+9y4FrrzPe/ci6ydHMm+43zj92jn2Z/65XeXAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAj4+Pn+mn4PAMD13KUAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAv4Pg0mCYRMjqgIAAAAASUVORK5CYII=" alt="QR code that saves Little Z's Lawn Care to your phone contacts"></div>
+      <br><a class="save-btn" href="LittleZs.vcf" download>Save to contacts</a>
+    </div>
+
+    <p class="area">Serving <strong>Morrison, TN</strong> and the surrounding area.</p>
+  </div>
+</section>
+
+<div class="stripe-rule" aria-hidden="true"><canvas class="turf"></canvas></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fname">Little Z's Lawn Care</div>
+    <div class="fsub">Morrison, Tennessee &middot; 931-743-1160</div>
+    <button class="install" id="installBtn" type="button">Add to home screen</button>
+    <p class="ios-tip" id="iosTip">Tap Share, then <strong>Add to Home Screen</strong>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- grass texture on the divider bands ---------- */
+  function turf(cv){
+    var ctx = cv.getContext('2d');
+    var d = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect();
+    if (!r.width) return;
+    cv.width = Math.round(r.width * d);
+    cv.height = Math.round(r.height * d);
+    var w = cv.width, h = cv.height;
+    var g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, '#33511C');
+    g.addColorStop(1, '#1D3210');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    var n = Math.floor((w * h) / (500 * d));
+    for (var i = 0; i < n; i++) {
+      var x = Math.random() * w, y = h - Math.random() * h * 1.2;
+      var len = (6 + Math.random() * 15) * d;
+      var lean = (Math.random() - 0.5) * 12 * d;
+      ctx.strokeStyle = 'hsl(' + (84 + Math.random()*26) + ' ' +
+                        (32 + Math.random()*30) + '% ' +
+                        (16 + Math.random()*26) + '%)';
+      ctx.lineWidth = (1 + Math.random() * 1.9) * d;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(x, y + len);
+      ctx.quadraticCurveTo(x + lean * 0.4, y + len * 0.4, x + lean, y);
+      ctx.stroke();
+    }
+  }
+  var turfs = document.querySelectorAll('.turf');
+  function sowAll(){ turfs.forEach(turf); }
+  sowAll();
+  var tt;
+  window.addEventListener('resize', function(){ clearTimeout(tt); tt = setTimeout(sowAll, 200); });
+
+  /* ---------- mow each section in on scroll ---------- */
+  var rows = document.querySelectorAll('.mow-in');
+  if (calm || !('IntersectionObserver' in window)) {
+    rows.forEach(function(el){ el.classList.add('cut'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('cut'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    rows.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- add to home screen ---------- */
+  var btn = document.getElementById('installBtn');
+  var tip = document.getElementById('iosTip');
+  var prompt = null;
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    prompt = e;
+    if (btn && !standalone) btn.classList.add('show');
+  });
+
+  if (btn) btn.addEventListener('click', function(){
+    if (!prompt) return;
+    prompt.prompt();
+    prompt.userChoice.then(function(){ prompt = null; btn.classList.remove('show'); });
+  });
+
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (isIOS && !standalone && tip) tip.classList.add('show');
+
+  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    });
+  }
+})();
+</script>
+</body>
+</html>
