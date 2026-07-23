@@ -1,6 +1,6 @@
 // Little Z's Lawn Care - offline shell
 const CACHE = 'littlezs-v1';
-const FILES = ['./', './index.html', './card.html', './manifest.json',
+const FILES = ['./', './index.html', './card.html', './clients.html', './manifest.json',
                './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
