@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className="js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Clients &middot; Little Z's</title>
+<meta name="theme-color" content="#12140E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#12140E; --asphalt-2:#1B1E15; --red:#C4271D; --red-dark:#96190F;
+    --cut:#5C8A2E; --shade:#2A4116; --bone:#F1EFE4; --dust:#9E9C8B; --line:#2C3126;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--asphalt); color:var(--bone);
+    font-family:'Barlow',system-ui,sans-serif; font-size:17px; line-height:1.55;
+    -webkit-font-smoothing:antialiased; padding-bottom:40px;
+  }
+  .wrap{width:100%;max-width:720px;margin:0 auto;padding:0 18px;}
+
+  .lbl{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.17em;font-size:.72rem;color:var(--dust);display:block;margin-bottom:5px;
+  }
+  h1,h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:1;letter-spacing:.01em;}
+
+  input,select,textarea,button{font-family:inherit;font-size:1rem;color:var(--bone);}
+  input,select,textarea{
+    width:100%;background:var(--asphalt);border:1.5px solid var(--line);
+    padding:11px 12px;margin-bottom:13px;border-radius:0;
+  }
+  textarea{min-height:66px;resize:vertical;}
+  input:focus,select,textarea:focus{outline:none;border-color:var(--cut);}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--dust) 50%),linear-gradient(135deg,var(--dust) 50%,transparent 50%);background-position:calc(100% - 18px) 19px,calc(100% - 13px) 19px;background-size:5px 5px;background-repeat:no-repeat;}
+
+  .btn{
+    display:inline-block;width:100%;text-align:center;background:var(--red);border:0;
+    font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.05em;
+    font-size:1rem;padding:14px;cursor:pointer;transition:background .15s ease;
+  }
+  .btn:hover{background:var(--red-dark);}
+  .btn.ghost{background:transparent;border:1.5px solid var(--line);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.14em;font-size:.82rem;padding:12px;}
+  .btn.ghost:hover{border-color:var(--red);background:transparent;}
+  .btn.green{background:var(--cut);} .btn.green:hover{background:#4A7024;}
+  button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--cut);outline-offset:2px;}
+
+  /* ---------- gate ---------- */
+  #gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .gatebox{width:100%;max-width:330px;text-align:center;}
+  .gatebox h1{font-size:1.9rem;margin-bottom:8px;}
+  .gatebox h1 .z{color:var(--red);}
+  .gatebox p{color:var(--dust);font-size:.95rem;margin-bottom:24px;}
+  #pin{text-align:center;letter-spacing:.18em;font-size:1.15rem;padding:14px;}
+  .err{color:#FF8A7E;font-size:.9rem;min-height:22px;margin-bottom:6px;}
+
+  /* ---------- app ---------- */
+  #app{display:none;}
+  header.bar{background:var(--asphalt-2);border-bottom:4px solid var(--red);padding:20px 0;margin-bottom:22px;}
+  .bar h1{font-size:1.5rem;}
+  .bar h1 .z{color:var(--red);}
+  .bar .sub{color:var(--dust);font-size:.82rem;margin-top:4px;}
+
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:2px solid var(--line);margin-bottom:22px;}
+  .stat{background:var(--asphalt-2);padding:14px;text-align:center;}
+  .stat .n{font-family:'Anton',sans-serif;font-size:1.7rem;color:var(--cut);line-height:1;}
+  .stat .n.due{color:var(--red);}
+  .stat .t{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;color:var(--dust);margin-top:5px;}
+
+  details.add{border:2px solid var(--line);margin-bottom:20px;}
+  details.add summary{
+    list-style:none;cursor:pointer;padding:14px 16px;background:var(--asphalt-2);
+    font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1rem;letter-spacing:.03em;
+  }
+  details.add summary::-webkit-details-marker{display:none;}
+  details.add summary::after{content:" +";color:var(--cut);}
+  details.add[open] summary::after{content:" \2212";}
+  .addbody{padding:16px;}
+
+  #search{margin-bottom:16px;}
+
+  .client{border:2px solid var(--line);margin-bottom:12px;}
+  .client .top{padding:14px 15px;background:var(--asphalt-2);display:flex;justify-content:space-between;gap:12px;align-items:flex-start;}
+  .client .nm{font-family:'Anton',sans-serif;font-size:1.15rem;text-transform:uppercase;line-height:1.1;}
+  .tag{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.12em;font-size:.66rem;padding:4px 8px;background:var(--shade);color:var(--bone);white-space:nowrap;
+  }
+  .tag.overdue{background:var(--red);}
+  .client .body{padding:13px 15px;}
+  .client .body a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--line);}
+  .client .body a:hover{border-color:var(--red);}
+  .row{display:flex;gap:10px;font-size:.95rem;padding:4px 0;}
+  .row .k{color:var(--dust);min-width:74px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;padding-top:3px;}
+  .acts{display:flex;gap:8px;padding:0 15px 14px;flex-wrap:wrap;}
+  .acts button{flex:1;min-width:96px;}
+
+  .empty{text-align:center;color:var(--dust);padding:36px 16px;border:2px dashed var(--line);}
+
+  .tools{margin-top:26px;padding-top:22px;border-top:2px solid var(--line);}
+  .tools .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .tools p{color:var(--dust);font-size:.85rem;margin-top:10px;line-height:1.5;}
+  .backlink{display:block;text-align:center;margin-top:24px;color:var(--dust);font-size:.85rem;}
+
+  .warn{background:#2A1A10;border-left:4px solid var(--red);padding:12px 14px;font-size:.88rem;color:#E8CFC7;margin-bottom:20px;}
+
+  @media (min-width:600px){ .stats{grid-template-columns:repeat(4,1fr);} }
+</style>
+</head>
+<body>
+
+<!-- ---------- passcode gate ---------- -->
+<div id="gate">
+  <div class="gatebox">
+    <h1>Little <span class="z">Z's</span><br>Clients</h1>
+    <p id="gateMsg">Enter your passcode</p>
+    <div class="err" id="gateErr"></div>
+    <input type="password" id="pin" maxlength="40" autocomplete="off" placeholder="Passcode">
+    <button class="btn" id="gateBtn" type="button">Unlock</button>
+    <button class="btn ghost" id="resetPin" type="button" style="margin-top:10px;">Forgot passcode</button>
+  </div>
+</div>
+
+<!-- ---------- app ---------- -->
+<div id="app">
+  <header class="bar">
+    <div class="wrap">
+      <h1>Little <span class="z">Z's</span> Clients</h1>
+      <div class="sub">Saved on this phone only</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="warn" id="storeWarn" style="display:none;">
+      This browser isn't letting the page save. Anything you add will disappear when you close it.
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" id="sTotal">0</div><div class="t">Clients</div></div>
+      <div class="stat"><div class="n due" id="sDue">0</div><div class="t">Due now</div></div>
+      <div class="stat"><div class="n" id="sWeekly">0</div><div class="t">Weekly</div></div>
+      <div class="stat"><div class="n" id="sMonth">0</div><div class="t">Cut this month</div></div>
+    </div>
+
+    <details class="add" id="addWrap">
+      <summary id="addTitle">Add a client</summary>
+      <div class="addbody">
+        <input type="hidden" id="fId">
+        <span class="lbl">Name</span>
+        <input id="fName" placeholder="Jane Smith">
+        <span class="lbl">Phone</span>
+        <input id="fPhone" type="tel" placeholder="931-555-0000">
+        <span class="lbl">Address</span>
+        <input id="fAddr" placeholder="123 Main St, Morrison">
+        <span class="lbl">How often</span>
+        <select id="fSched">
+          <option value="Weekly">Weekly</option>
+          <option value="Every 2 weeks">Every 2 weeks</option>
+          <option value="Monthly">Monthly</option>
+          <option value="One time">One time</option>
+          <option value="As they call">As they call</option>
+        </select>
+        <span class="lbl">Price per cut</span>
+        <input id="fPrice" inputmode="decimal" placeholder="45">
+        <span class="lbl">Last mowed</span>
+        <input id="fLast" type="date">
+        <span class="lbl">Notes</span>
+        <textarea id="fNotes" placeholder="Gate code, dogs, don't cut the back, etc."></textarea>
+        <button class="btn" id="saveBtn" type="button">Save client</button>
+        <button class="btn ghost" id="cancelBtn" type="button" style="margin-top:9px;display:none;">Cancel edit</button>
+      </div>
+    </details>
+
+    <input id="search" placeholder="Search name, address or notes">
+
+    <div id="list"></div>
+
+    <div class="tools">
+      <div class="pair">
+        <button class="btn ghost" id="exportBtn" type="button">Export backup</button>
+        <button class="btn ghost" id="importBtn" type="button">Import backup</button>
+      </div>
+      <button class="btn ghost" id="changePin" type="button">Change passcode</button>
+      <input type="file" id="fileIn" accept="application/json,.json" style="display:none;">
+      <p>Export saves a file you can text to John or email yourself. Import loads one back in. Do it every so often &mdash; if this phone gets wiped, the list goes with it.</p>
+    </div>
+
+    <a class="backlink" href="index.html">&larr; Back to the site</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'littlezs.clients.v1', PKEY = 'littlezs.pin.v1';
+  var mem = {}, canStore = true;
+
+  try {
+    localStorage.setItem('__t','1'); localStorage.removeItem('__t');
+  } catch(e){ canStore = false; }
+
+  function get(k){
+    if (canStore) { try { return localStorage.getItem(k); } catch(e){} }
+    return mem[k] !== undefined ? mem[k] : null;
+  }
+  function set(k,v){
+    if (canStore) { try { localStorage.setItem(k,v); return; } catch(e){ canStore = false; } }
+    mem[k] = v;
+  }
+
+  /* ---------- data ---------- */
+  var clients = [];
+  try { clients = JSON.parse(get(KEY) || '[]'); } catch(e){ clients = []; }
+  function save(){ set(KEY, JSON.stringify(clients)); render(); }
+
+  /* ---------- passcode ---------- */
+  var gate = document.getElementById('gate'), app = document.getElementById('app');
+  var pin = document.getElementById('pin'), gErr = document.getElementById('gateErr');
+  var gMsg = document.getElementById('gateMsg'), gBtn = document.getElementById('gateBtn');
+  var making = !get(PKEY), confirming = null;
+
+  if (making) { gMsg.textContent = 'Pick a passcode to lock this page'; gBtn.textContent = 'Set passcode'; }
+
+  function open(){
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    if (!canStore) document.getElementById('storeWarn').style.display = 'block';
+    render();
+  }
+
+  function tryPin(){
+    var v = pin.value.trim();
+    if (v.length < 4) { gErr.textContent = 'At least 4 characters'; return; }
+    if (making) {
+      if (confirming === null) {
+        confirming = v; pin.value = ''; gErr.textContent = '';
+        gMsg.textContent = 'Type it once more'; return;
+      }
+      if (confirming !== v) { confirming = null; pin.value = ''; gErr.textContent = "Didn't match, start over";
+        gMsg.textContent = 'Pick a passcode to lock this page'; return; }
+      set(PKEY, confirming); making = false; open(); return;
+    }
+    if (v === get(PKEY)) { open(); } else { gErr.textContent = 'Wrong passcode'; pin.value = ''; }
+  }
+  gBtn.addEventListener('click', tryPin);
+  pin.addEventListener('keydown', function(e){ if (e.key === 'Enter') tryPin(); });
+
+  document.getElementById('resetPin').addEventListener('click', function(){
+    if (confirm('Resetting the passcode also erases the client list on this phone. Import a backup afterward to get it back.\n\nErase and start over?')) {
+      set(PKEY,''); set(KEY,'[]');
+      if (canStore) { try { localStorage.removeItem(PKEY); localStorage.removeItem(KEY); } catch(e){} }
+      location.reload();
+    }
+  });
+
+  document.getElementById('changePin').addEventListener('click', function(){
+    var a = prompt('New passcode (at least 4 characters):');
+    if (a === null) return;
+    a = a.trim();
+    if (a.length < 4) { alert('Needs at least 4 characters.'); return; }
+    if (prompt('Type it once more:') !== a) { alert("Didn't match. Nothing changed."); return; }
+    set(PKEY, a); alert('Passcode changed.');
+  });
+
+  /* ---------- helpers ---------- */
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function daysSince(d){
+    if (!d) return null;
+    var t = new Date(d + 'T00:00:00');
+    if (isNaN(t)) return null;
+    return Math.floor((Date.now() - t.getTime()) / 86400000);
+  }
+  function limitFor(s){
+    if (s === 'Weekly') return 7;
+    if (s === 'Every 2 weeks') return 14;
+    if (s === 'Monthly') return 30;
+    return null;
+  }
+  function isDue(c){
+    var lim = limitFor(c.sched), d = daysSince(c.last);
+    if (lim === null) return false;
+    if (d === null) return true;
+    return d >= lim;
+  }
+  function today(){
+    var n = new Date();
+    return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0');
+  }
+
+  /* ---------- form ---------- */
+  var F = { id:'fId', name:'fName', phone:'fPhone', addr:'fAddr', sched:'fSched', price:'fPrice', last:'fLast', notes:'fNotes' };
+  function el(k){ return document.getElementById(F[k]); }
+  function clearForm(){
+    Object.keys(F).forEach(function(k){ el(k).value = ''; });
+    el('sched').value = 'Weekly';
+    document.getElementById('addTitle').textContent = 'Add a client';
+    document.getElementById('saveBtn').textContent = 'Save client';
+    document.getElementById('cancelBtn').style.display = 'none';
+  }
+  document.getElementById('cancelBtn').addEventListener('click', function(){
+    clearForm(); document.getElementById('addWrap').open = false;
+  });
+
+  document.getElementById('saveBtn').addEventListener('click', function(){
+    var name = el('name').value.trim();
+    if (!name) { alert('A name at least.'); el('name').focus(); return; }
+    var rec = {
+      id: el('id').value || String(Date.now()),
+      name: name,
+      phone: el('phone').value.trim(),
+      addr: el('addr').value.trim(),
+      sched: el('sched').value,
+      price: el('price').value.trim(),
+      last: el('last').value,
+      notes: el('notes').value.trim()
+    };
+    var i = clients.findIndex(function(c){ return c.id === rec.id; });
+    if (i > -1) clients[i] = rec; else clients.unshift(rec);
+    clearForm();
+    document.getElementById('addWrap').open = false;
+    save();
+  });
+
+  /* ---------- render ---------- */
+  var listEl = document.getElementById('list'), searchEl = document.getElementById('search');
+  searchEl.addEventListener('input', render);
+
+  function render(){
+    var q = searchEl.value.trim().toLowerCase();
+    var shown = clients.filter(function(c){
+      if (!q) return true;
+      return (c.name + ' ' + c.addr + ' ' + c.notes + ' ' + c.phone).toLowerCase().indexOf(q) > -1;
+    });
+
+    var thisMonth = new Date().getMonth(), thisYear = new Date().getFullYear();
+    document.getElementById('sTotal').textContent = clients.length;
+    document.getElementById('sDue').textContent = clients.filter(isDue).length;
+    document.getElementById('sWeekly').textContent = clients.filter(function(c){ return c.sched === 'Weekly'; }).length;
+    document.getElementById('sMonth').textContent = clients.filter(function(c){
+      if (!c.last) return false;
+      var t = new Date(c.last + 'T00:00:00');
+      return !isNaN(t) && t.getMonth() === thisMonth && t.getFullYear() === thisYear;
+    }).length;
+
+    if (!shown.length){
+      listEl.innerHTML = '<div class="empty">' +
+        (clients.length ? 'Nothing matches that.' : 'No clients yet. Add the first one up top.') + '</div>';
+      return;
+    }
+
+    shown.sort(function(a,b){ return (isDue(b) - isDue(a)) || a.name.localeCompare(b.name); });
+
+    listEl.innerHTML = shown.map(function(c){
+      var d = daysSince(c.last), due = isDue(c);
+      var when = c.last ? (d === 0 ? 'Today' : d === 1 ? 'Yesterday' : d + ' days ago') : 'Never';
+      var tel = c.phone.replace(/[^\d+]/g,'');
+      return '<div class="client">' +
+        '<div class="top"><div class="nm">' + esc(c.name) + '</div>' +
+        '<span class="tag' + (due ? ' overdue' : '') + '">' + (due ? 'Due' : esc(c.sched)) + '</span></div>' +
+        '<div class="body">' +
+          (c.phone ? '<div class="row"><span class="k">Phone</span><span><a href="tel:' + esc(tel) + '">' + esc(c.phone) + '</a></span></div>' : '') +
+          (c.addr ? '<div class="row"><span class="k">Address</span><span><a href="https://maps.google.com/?q=' + encodeURIComponent(c.addr) + '" target="_blank" rel="noopener">' + esc(c.addr) + '</a></span></div>' : '') +
+          '<div class="row"><span class="k">Mowed</span><span>' + when + '</span></div>' +
+          (c.price ? '<div class="row"><span class="k">Price</span><span>$' + esc(c.price) + '</span></div>' : '') +
+          '<div class="row"><span class="k">How often</span><span>' + esc(c.sched) + '</span></div>' +
+          (c.notes ? '<div class="row"><span class="k">Notes</span><span>' + esc(c.notes) + '</span></div>' : '') +
+        '</div>' +
+        '<div class="acts">' +
+          '<button class="btn green" data-mow="' + c.id + '" type="button">Mowed today</button>' +
+          '<button class="btn ghost" data-edit="' + c.id + '" type="button">Edit</button>' +
+          '<button class="btn ghost" data-del="' + c.id + '" type="button">Delete</button>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  listEl.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var id = b.dataset.mow || b.dataset.edit || b.dataset.del;
+    var c = clients.find(function(x){ return x.id === id; }); if (!c) return;
+
+    if (b.dataset.mow){ c.last = today(); save(); return; }
+    if (b.dataset.del){
+      if (confirm('Delete ' + c.name + '? This can\'t be undone.')) {
+        clients = clients.filter(function(x){ return x.id !== id; }); save();
+      }
+      return;
+    }
+    Object.keys(F).forEach(function(k){ el(k).value = c[k] || ''; });
+    el('id').value = c.id;
+    document.getElementById('addTitle').textContent = 'Editing ' + c.name;
+    document.getElementById('saveBtn').textContent = 'Update client';
+    document.getElementById('cancelBtn').style.display = 'block';
+    document.getElementById('addWrap').open = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ---------- backup ---------- */
+  document.getElementById('exportBtn').addEventListener('click', function(){
+    if (!clients.length) { alert('Nothing to back up yet.'); return; }
+    var blob = new Blob([JSON.stringify(clients, null, 2)], { type:'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'littlezs-clients-' + today() + '.json';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+
+  var fileIn = document.getElementById('fileIn');
+  document.getElementById('importBtn').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f = fileIn.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var incoming;
+      try { incoming = JSON.parse(r.result); } catch(e){ alert("That file doesn't look like a backup."); return; }
+      if (!Array.isArray(incoming)) { alert("That file doesn't look like a backup."); return; }
+      var add = 0, upd = 0;
+      incoming.forEach(function(rec){
+        if (!rec || !rec.name) return;
+        rec.id = rec.id || String(Date.now() + Math.random());
+        var i = clients.findIndex(function(c){ return c.id === rec.id; });
+        if (i > -1) { clients[i] = rec; upd++; } else { clients.push(rec); add++; }
+      });
+      save();
+      alert(add + ' added, ' + upd + ' updated.');
+    };
+    r.readAsText(f);
+    fileIn.value = '';
+  });
+
+  clearForm();
+})();
+</script>
+</body>
+</html>
