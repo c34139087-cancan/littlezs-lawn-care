@@ -326,6 +326,16 @@
   .ios-tip{display:none;margin-top:14px;font-size:.82rem;color:var(--dust);}
   .ios-tip.show{display:block;}
 
+  .secret{
+    display:inline-block;
+    margin-top:18px;
+    font-size:1rem;
+    text-decoration:none;
+    opacity:.16;
+    transition:opacity .2s ease;
+  }
+  .secret:hover,.secret:focus-visible{opacity:.9;}
+
   footer .fsub{color:var(--dust);font-size:.86rem;margin-top:5px;}
 
   a:focus-visible,button:focus-visible{outline:3px solid var(--cut);outline-offset:3px;}
@@ -466,6 +476,7 @@
     <div class="fsub">Morrison, Tennessee &middot; 931-743-1160</div>
     <button class="install" id="installBtn" type="button">Add to home screen</button>
     <p class="ios-tip" id="iosTip">Tap Share, then <strong>Add to Home Screen</strong>.</p>
+    <a class="secret" href="clients.html" title="Clients" aria-label="Client list">&#128668;</a>
   </div>
 </footer>
 
